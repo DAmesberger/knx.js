@@ -118,7 +118,10 @@ const keyText = (mapref, value) => {
   // pass in map by name or value
   const map = KnxConstants[mapref] || mapref;
   if (typeof map !== 'object') throw 'Unknown map: ' + mapref;
-  for (const [key, v] in Object.entries(map)) if (v == value) return key;
+  for (const key in map)
+  { 
+     if (map[key] === value) return key;
+  } 
 
   KnxLog.get().trace('not found: %j', value);
 };
